@@ -10,10 +10,10 @@
                 <a class="nav-link" href="/">Главная</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/doclist">Список врачей</a>
+                <a class="nav-link" href="/main">Список врачей</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/main">Запись</a>
+                <a class="nav-link" href="/turn">Запись</a>
             </li>
         </ul>
     </div>
