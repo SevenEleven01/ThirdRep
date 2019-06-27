@@ -19,7 +19,7 @@
     </div>
     <h1>Список врачей:</h1>
     <div class="card-columns">
-        <#list doctors as doctor>
+        <#list doctors?sort_by("speciality") as doctor>
             <div class="card my-3">
                 <div class="m-2">
                     <span>${doctor.speciality}</span>

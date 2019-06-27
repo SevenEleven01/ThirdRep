@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 public class MainController {
     @Autowired
@@ -78,12 +80,31 @@ public class MainController {
         model.addAttribute("doctors", doctors);
         model.addAttribute("speciality", "Травматолог");
         model.addAttribute("name", "Джон Сина");
+        model.addAttribute("link","traumatologist");
         model.addAttribute("busies",busies);
 
         return "appointment";
     }
 
+    @PostMapping("/traumatologist")
+    public String addTraum(@RequestParam String name, Model model) {
+        Iterable<Doctor> doctors = doctorRepo.findAll();
+        List<Busy> busies = busyRepo.findByTraumatologist(false);
 
+        if (name == "08:00") {
+            //busies.get(7);
+            model.addAttribute("name", "Индиана Джонс");
+        } else {
+            model.addAttribute("name", "Джон Сина");
+        }
+
+        model.addAttribute("doctors", doctors);
+        model.addAttribute("speciality", "Травматолог");
+
+        model.addAttribute("busies",busies);
+
+        return "appointment";
+    }
 
     @GetMapping("/therapist") //Быков
     public String therapist(Model model) {
@@ -93,6 +114,7 @@ public class MainController {
         model.addAttribute("doctors", doctors);
         model.addAttribute("speciality", "Терапевт");
         model.addAttribute("name", "Быков А. Е.");
+        model.addAttribute("link","therapist");
         model.addAttribute("busies",busies);
 
         return "appointment";
@@ -106,6 +128,7 @@ public class MainController {
         model.addAttribute("doctors", doctors);
         model.addAttribute("speciality", "Ветеринар");
         model.addAttribute("name", "Айболит");
+        model.addAttribute("link","vet");
         model.addAttribute("busies",busies);
 
         return "appointment";
@@ -119,6 +142,7 @@ public class MainController {
         model.addAttribute("doctors", doctors);
         model.addAttribute("speciality", "Стоматолог");
         model.addAttribute("name", "Майк Тайсон");
+        model.addAttribute("link","dentist");
         model.addAttribute("busies",busies);
 
         return "appointment";
@@ -132,6 +156,7 @@ public class MainController {
         model.addAttribute("doctors", doctors);
         model.addAttribute("speciality", "Хирург");
         model.addAttribute("name", "Авиценна");
+        model.addAttribute("link","surgeon");
         model.addAttribute("busies",busies);
 
         return "appointment";
@@ -145,6 +170,7 @@ public class MainController {
         model.addAttribute("doctors", doctors);
         model.addAttribute("speciality", "Целитель");
         model.addAttribute("name", "Гиппократ");
+        model.addAttribute("link","healer");
         model.addAttribute("busies",busies);
 
         return "appointment";

@@ -17,7 +17,7 @@
         <div class="dropdown open my-3">
             <input class="btn btn-secondary dropdown-toggle" type="button" value="<#if speciality?? && name??>${speciality} ${name}<#else>Специалист:</#if>" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
-                <#list doctors as doctor>
+                <#list doctors?sort_by("speciality") as doctor>
                     <a class="dropdown-item" href="${doctor.link}">${doctor.speciality} ${doctor.name}</a>
                 </#list>
             </div>
@@ -29,7 +29,8 @@
             Время приёма специалиста:
         </div>
         <div>
-            <#list  busies as busy>
+            <form method="post" action="/${link?if_exists}"></form>
+            <#list  busies?sort_by("time") as busy>
                 <button name="${busy.time}" type="submit" class="btn btn-primary ml-2">${busy.time}</button>
             <#else>
                 <p>В данный момент к специалисту нет записи.</p>
